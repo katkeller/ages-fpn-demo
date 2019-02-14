@@ -17,7 +17,13 @@ public class DetectLookedAtInteractive : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, maxRange);
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.cyan);
+        RaycastHit hitInfo;
+        bool objectWasDetected = Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hitInfo, maxRange);
+
+        if (objectWasDetected)
+        {
+
+        }
     }
 }
