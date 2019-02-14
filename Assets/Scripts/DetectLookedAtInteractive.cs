@@ -15,10 +15,9 @@ public class DetectLookedAtInteractive : MonoBehaviour
     [SerializeField]
     private float maxRange = 5.0f;
 
-    private Vector3 raycastDirection;
-
     private void FixedUpdate()
     {
-        Physics.Raycast(raycastOrigin.position, raycastDirection, maxRange);
+        Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, maxRange);
+        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.cyan);
     }
 }
