@@ -23,7 +23,7 @@ public class DetectLookedAtInteractive : MonoBehaviour
 
         if (objectWasDetected)
         {
-
+            Debug.Log($"Player is looking at: {hitInfo.collider.gameObject.name}");
         }
     }
 }
