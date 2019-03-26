@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074002, b: 0.3587271, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1930,7 +1930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6632c1e879b76704db98ecfc1e8f982e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectLookedAtInteractive: {fileID: 532999585}
 --- !u!114 &532999585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2627,6 +2626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919e5b4994ffe9c4d9f00afe11d431d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayText: InteractiveObject
 --- !u!4 &706272768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2283364850752350624, guid: 00945e99123f5fd458e6222978d5581b,

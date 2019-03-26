@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractiveObject : MonoBehaviour, IInteractive
 {
     [SerializeField]
-    private string displayText;
+    private string displayText = nameof(InteractiveObject);
     public string DisplayText => displayText;
 
     public void InteractWith()
