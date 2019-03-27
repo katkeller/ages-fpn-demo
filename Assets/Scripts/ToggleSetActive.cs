@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToggleSetActive : MonoBehaviour
+public class ToggleSetActive : InteractiveObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Tooltip("The GameObject to toggle")]
+    [SerializeField]
+    private GameObject objectToToggle;
 
-    // Update is called once per frame
-    void Update()
+    [Tooltip("Can the player interact with this more than once?")]
+    [SerializeField]
+    private bool isReusable = true;
+
+    private bool hasBeenUsed = false;
+
+    /// <summary>
+    /// Toggles the activeSelf value for the object to toggle when the player interacts with this object.
+    /// </summary>
+    public override void InteractWith()
     {
-        
+        if (isReusable || !hasBeenUsed)
+        {
+            base.InteractWith();
+            objectToToggle.SetActive(!objectToToggle.activeSelf);
+            hasBeenUsed = true;
+            if (!isReusable) displayText = string.Empty;
+        }
     }
 }
