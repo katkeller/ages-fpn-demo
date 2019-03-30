@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: ea566b48e06ce894bac9429771ba6268
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Mighty Brush
+  fontNames:
+  - Mighty Brush
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 46683704c0b7a23468fce5e9993f7c1e, type: 3}
+  - {fileID: 12800000, guid: 7aa319891ad9dc249914329c844746ba, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
