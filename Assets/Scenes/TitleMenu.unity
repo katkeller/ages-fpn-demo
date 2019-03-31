@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0788fc141d39664f9924b518f39dc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: RaycastingTutorial
+  gameSceneName: GreyBoxing2
 --- !u!1 &1316610718
 GameObject:
   m_ObjectHideFlags: 0
