@@ -7,15 +7,34 @@ using UnityEngine;
 /// </summary>
 public class InteractWithLookedAt : MonoBehaviour
 {
-    [SerializeField]
-    private DetectLookedAtInteractive detectLookedAtInteractive;
+    private IInteractive lookedAtInteractive;
 
     void Update()
     {
-        if (Input.GetButtonDown("Interact") && detectLookedAtInteractive.LookedAtInteractive != null)
+        if (Input.GetButtonDown("Interact") && lookedAtInteractive != null)
         {
             Debug.Log("Player pressed the interact button!");
-            detectLookedAtInteractive.LookedAtInteractive.InteractWith();
+            lookedAtInteractive.InteractWith();
         }
     }
+
+    /// <summary>
+    /// Event handler for DetectLookedAtInteractive.LookedAtInteractiveChanged
+    /// </summary>
+    /// <param name="newLookedAtInteractive">Reference to the new IInteractive the player is looking at.</param>
+    private void OnLookedAtInteractiveChanged(IInteractive newLookedAtInteractive)
+    {
+        lookedAtInteractive = newLookedAtInteractive;
+    }
+
+    #region Event subscription / unsubscription
+    private void OnEnable()
+    {
+        DetectLookedAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
+    }
+    private void OnDisable()
+    {
+        DetectLookedAtInteractive.LookedAtInteractiveChanged -= OnLookedAtInteractiveChanged;
+    }
+    #endregion
 }
