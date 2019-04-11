@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class InventoryObject : InteractiveObject
 {
+    [Tooltip("The name of the object as it will appear in the inventory UI")]
+    [SerializeField]
+    private string objectName = nameof(InventoryObject);
+
     // TODO: Add long description field
     // TODO: Add Icon field
 
@@ -18,7 +22,7 @@ public class InventoryObject : InteractiveObject
 
     public InventoryObject()
     {
-        displayText = nameof(InventoryObject);
+        displayText = $"Take {objectName}";
     }
 
     /// <summary>
