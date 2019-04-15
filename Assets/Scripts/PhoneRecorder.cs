@@ -10,16 +10,27 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     [SerializeField]
     private AudioClip buttonClip, clip1, clip2, clip3;
 
+    [SerializeField]
+    private GameObject otherObjectToAnimate;
+
+    private Animator otherObjectAnimator;
+
+    //[Tooltip("The animation that will play during the simularly numbered clip after the delay time has elapsed.")]
+    //[SerializeField]
+    //private Animation firstClipAnimation, secondClipAnimation, thirdClipAnimation;
+
     private AudioClip clipToPlayNext;
 
     public string DisplayText => displayText;
     private AudioSource audioSource;
-    private int timesInteractedWith = 0;
+    //private int timesInteractedWith = 0;
+    private int shouldOpenAnimParameter = Animator.StringToHash("shouldOpen");
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         clipToPlayNext = clip1;
+        otherObjectAnimator = otherObjectToAnimate.GetComponent<Animator>();
     }
 
     public void InteractWith()
@@ -28,6 +39,8 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         {
             audioSource.PlayOneShot(buttonClip, 1.0f);
             audioSource.PlayOneShot(clipToPlayNext, 1.0f);
+            otherObjectAnimator.SetBool(shouldOpenAnimParameter, true);
+            //firstClipAnimation.Play();
         }
         catch (System.Exception)
         {
