@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 
 public class InventoryMenu : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class InventoryMenu : MonoBehaviour
         GameObject clone = Instantiate(inventoryMenuItemTogglePrefab, inventoryListContentArea);
         InventoryMenuItemToggle toggle = clone.GetComponent<InventoryMenuItemToggle>();
         toggle.AssociatedInventoryObject = inventoryObjectToAdd;
+
     }
 
     private void Awake()
