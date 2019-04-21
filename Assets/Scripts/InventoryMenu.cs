@@ -17,7 +17,7 @@ public class InventoryMenu : MonoBehaviour
     {
         get
         {
-            if (instance = null)
+            if (instance == null)
                 throw new System.Exception("There is currently no InventoryMenu instance, but you are trying to access it.");
             return instance;
         }
