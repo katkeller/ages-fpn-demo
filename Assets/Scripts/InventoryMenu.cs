@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class InventoryMenu : MonoBehaviour
     [Tooltip("The content of the scrollview for the list of inventory items.")]
     [SerializeField]
     private Transform inventoryListContentArea;
+
+    [Tooltip("The place in the UI for displaying the name of the selected inventory item.")]
+    [SerializeField]
+    private Text itemLabelText;
+
+    [Tooltip("The place in the UI for displaying info about the selected inventory item.")]
+    [SerializeField]
+    private TextMeshPro descriptionAreaText;
 
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
