@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.UI;
-using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class InventoryMenu : MonoBehaviour
 
     [Tooltip("The place in the UI for displaying info about the selected inventory item.")]
     [SerializeField]
-    private TextMeshPro descriptionAreaText;
+    private Text descriptionAreaText;
 
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
