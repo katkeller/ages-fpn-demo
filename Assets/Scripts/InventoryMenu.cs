@@ -84,6 +84,25 @@ public class InventoryMenu : MonoBehaviour
         HandleInput();
     }
 
+    /// <summary>
+    /// The event handler for InventoryMenuItemSelected
+    /// </summary>
+    private void OnInventoryMenuItemSelected(InventoryObject inventoryObjectThatWasSelected)
+    {
+        itemLabelText.text = inventoryObjectThatWasSelected.ObjectName;
+        descriptionAreaText.text = inventoryObjectThatWasSelected.Decription;
+    }
+
+    private void OnEnable()
+    {
+        InventoryMenuItemToggle.InventoryMenuItemSelected += OnInventoryMenuItemSelected;
+    }
+
+    private void OnDisable()
+    {
+        InventoryMenuItemToggle.InventoryMenuItemSelected -= OnInventoryMenuItemSelected;
+    }
+
     private void HandleInput()
     {
         if (Input.GetButtonDown("InventoryMenu"))

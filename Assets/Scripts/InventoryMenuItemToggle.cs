@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class InventoryMenuItemToggle : MonoBehaviour
     [Tooltip("The image componant used to show the associated inventory object's icon.")]
     [SerializeField]
     private Image iconImage;
+
+    public static event Action<InventoryObject> InventoryMenuItemSelected;
 
     private InventoryObject associatedInventoryObject;
 
@@ -27,9 +30,7 @@ public class InventoryMenuItemToggle : MonoBehaviour
     public void InventoryMenuItemWasToggled(bool isOn)
     {
         if (isOn)
-        {
-
-        }
+            InventoryMenuItemSelected?.Invoke(AssociatedInventoryObject);
 
         Debug.Log($"Toggled: {isOn}");
     }
