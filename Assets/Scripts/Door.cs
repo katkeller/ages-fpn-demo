@@ -69,6 +69,33 @@ public class Door : InteractiveObject
             isLocked = true;
     }
 
+    /// <summary>
+    /// Event handler for the PhoneRecorder script's DoorAnimationShouldPlay event. Plays animation and sound for door opening, as well as sets it's isOpen bool to true.
+    /// </summary>
+    /// <param name="doorToAnimate"></param>
+    private void OnDoorAnimationShouldPlay(Door doorToAnimate)
+    {
+        if (doorToAnimate == this)
+        {
+            audioSource.clip = openAudioClip;
+            animator.SetBool(shouldOpenAnimParameter, true);
+            displayText = string.Empty;
+            isOpen = true;
+            UnlockDoor();
+            base.InteractWith();
+        }
+    }
+
+    private void OnEnable()
+    {
+        PhoneRecorder.DoorAnimationShouldPlay += OnDoorAnimationShouldPlay;
+    }
+
+    private void OnDisable()
+    {
+        PhoneRecorder.DoorAnimationShouldPlay -= OnDoorAnimationShouldPlay;
+    }
+
     public override void InteractWith()
     {
         if (!isOpen)
