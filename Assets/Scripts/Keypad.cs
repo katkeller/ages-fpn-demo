@@ -40,72 +40,9 @@ public class Keypad : MonoBehaviour
         StartCoroutine(WaitForAudioClip());
     }
 
-    public void AddZeroToInput(string number)
+    public void AddNumberToInput(string number)
     {
         currentInput = currentInput + number;
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddOneToInput()
-    {
-        currentInput = currentInput + "1";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddTwoToInput()
-    {
-        currentInput = currentInput + "2";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddThreeToInput()
-    {
-        currentInput = currentInput + "3";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddFourToInput()
-    {
-        currentInput = currentInput + "4";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddFiveToInput()
-    {
-        currentInput = currentInput + "5";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddSixToInput()
-    {
-        currentInput = currentInput + "6";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddSevenToInput()
-    {
-        currentInput = currentInput + "7";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddEightToInput()
-    {
-        currentInput = currentInput + "8";
-        inputText.text = currentInput;
-        audioSource.Play();
-    }
-
-    public void AddNineToInput()
-    {
-        currentInput = currentInput + "9";
         inputText.text = currentInput;
         audioSource.Play();
     }
@@ -115,6 +52,8 @@ public class Keypad : MonoBehaviour
         input = currentInput;
         audioSource.Play();
         InputEntered?.Invoke();
+        currentInput = "";
+        inputText.text = currentInput;
         HideMenu();
     }
 

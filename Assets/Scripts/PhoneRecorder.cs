@@ -12,9 +12,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     private AudioClip buttonClip, clip1, clip2, clip3;
 
     [SerializeField]
-    private GameObject otherObjectToAnimate;
-
-    [SerializeField]
     private Door doorToAnimate1, doorToAnimate2, doorToAnimate3;
 
     [SerializeField]
@@ -33,30 +30,17 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     private int shouldOpenAnimParameter = Animator.StringToHash("shouldOpen");
     private AudioClip clipToPlay;
     private float clipToPlayAnimationDelay= 0.0f;
-    private Animator otherObjectAnimator;
-    private AudioSource otherObjectAudioSource;
     private Door currentDoorToAnimate;
    
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        otherObjectAnimator = otherObjectToAnimate.GetComponent<Animator>();
-        otherObjectAudioSource = otherObjectToAnimate.GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
-        //Placeholder initialization for code that chooses which clip to play based on number dialed
-        //clipToPlay = clip1;
-        //currentDoorToAnimate = doorToAnimate1;
     }
 
     public void InteractWith()
     {
         keypad.ShowMenu();
-
-        //PlayClip();
         Debug.Log($"Player just interacted with {gameObject.name}!");
     }
 
@@ -104,15 +88,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     IEnumerator PlayAnimation()
     {
         yield return new WaitForSeconds(clipToPlayAnimationDelay);
-        //otherObjectAnimator.SetBool(shouldOpenAnimParameter, true);
-        //otherObjectAudioSource.Play();
         DoorAnimationShouldPlay?.Invoke(currentDoorToAnimate);
-
-        //if(clip2SecondAnimationDelay != 0)
-        //{
-        //    yield return new WaitForSeconds(clip2SecondAnimationDelay);
-
-        //}
     }
 
     IEnumerator PlayAudio()
