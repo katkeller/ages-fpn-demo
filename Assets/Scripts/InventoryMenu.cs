@@ -21,6 +21,19 @@ public class InventoryMenu : MonoBehaviour
     [SerializeField]
     private Text descriptionAreaText;
 
+    [Tooltip("The button that serves as both an icon of the item selected, and a button for bringing up a larger version of the icon.")]
+    [SerializeField]
+    private Button itemImageButton;
+
+    [SerializeField]
+    private Image itemEnlargedImage, greyOutImage;
+
+    [SerializeField]
+    private Button hideEnlargedImageButton;
+
+    [SerializeField]
+    private Button exitButton;
+
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
@@ -43,6 +56,22 @@ public class InventoryMenu : MonoBehaviour
     public void ExitMenuButtonClicked()
     {
         HideMenu();
+    }
+
+    public void HideEnlargedImageButtonClicked()
+    {
+        exitButton.gameObject.SetActive(true);
+        itemEnlargedImage.gameObject.SetActive(false);
+        hideEnlargedImageButton.gameObject.SetActive(false);
+        greyOutImage.gameObject.SetActive(false);
+    }
+
+    public void ItemImageButtonClicked()
+    {
+        exitButton.gameObject.SetActive(false);
+        itemEnlargedImage.gameObject.SetActive(true);
+        hideEnlargedImageButton.gameObject.SetActive(true);
+        greyOutImage.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -71,6 +100,9 @@ public class InventoryMenu : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
         rigidbodyFirstPersonController = FindObjectOfType<RigidbodyFirstPersonController>();
         audioSource = GetComponent<AudioSource>();
+        itemEnlargedImage.gameObject.SetActive(false);
+        hideEnlargedImageButton.gameObject.SetActive(false);
+        greyOutImage.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -91,6 +123,8 @@ public class InventoryMenu : MonoBehaviour
     {
         itemLabelText.text = inventoryObjectThatWasSelected.ObjectName;
         descriptionAreaText.text = inventoryObjectThatWasSelected.Decription;
+        itemImageButton.image.sprite = inventoryObjectThatWasSelected.Icon;
+        itemEnlargedImage.sprite = inventoryObjectThatWasSelected.LargeImage;
     }
 
     private void OnEnable()

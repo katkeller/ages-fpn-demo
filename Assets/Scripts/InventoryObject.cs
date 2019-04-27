@@ -17,9 +17,13 @@ public class InventoryObject : InteractiveObject
     [SerializeField]
     private Sprite icon;
 
+    [SerializeField]
+    private Sprite largeImage;
+
     public Sprite Icon => icon;
     public string Decription => description;
     public string ObjectName => objectName;
+    public Sprite LargeImage => largeImage;
 
     private new Renderer renderer;
     private new Collider collider;
