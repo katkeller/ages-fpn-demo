@@ -13,6 +13,9 @@ public class Keypad : MonoBehaviour
     [SerializeField]
     private Text inputText;
 
+    [SerializeField]
+    private Text clearButtonText;
+
     private string input;
     private string currentInput;
     private bool isEntered;
@@ -40,6 +43,18 @@ public class Keypad : MonoBehaviour
         StartCoroutine(WaitForAudioClip());
     }
 
+    private void Update()
+    {
+        if (currentInput == "")
+        {
+            clearButtonText.text = "Exit";
+        }
+        else
+        {
+            clearButtonText.text = "Clear";
+        }
+    }
+
     public void AddNumberToInput(string number)
     {
         currentInput = currentInput + number;
@@ -59,9 +74,15 @@ public class Keypad : MonoBehaviour
 
     public void ClearInput()
     {
-        currentInput = "";
-        inputText.text = currentInput;
-        audioSource.Play();
+        if (currentInput == "")
+            HideMenu();
+        else
+        {
+            currentInput = "";
+            inputText.text = currentInput;
+            audioSource.Play();
+            //clearButtonText.text = "Exit";
+        }
     }
 
     public void ShowMenu()
