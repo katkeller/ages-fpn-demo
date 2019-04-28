@@ -81,7 +81,6 @@ public class Keypad : MonoBehaviour
             currentInput = "";
             inputText.text = currentInput;
             audioSource.Play();
-            //clearButtonText.text = "Exit";
         }
     }
 
