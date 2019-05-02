@@ -17,11 +17,11 @@ public class AudioVisualizer : MonoBehaviour
     [SerializeField]
     private Light lightSource;
 
-    private Material material;
+    //private Material material;
 
     private void Start()
     {
-        material = GetComponent<MeshRenderer>().materials[0];
+        //material = GetComponent<MeshRenderer>().materials[0];
     }
 
     private void Update()

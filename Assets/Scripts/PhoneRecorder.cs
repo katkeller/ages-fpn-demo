@@ -24,6 +24,12 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     [SerializeField]
     private string phoneNumber1, phoneNumber2, phoneNumber3;
 
+    [SerializeField]
+    private GameObject ghostLightManager;
+
+    [SerializeField]
+    private Light light1, light2, light3, light4;
+
     public static event Action<Door> DoorAnimationShouldPlay;
 
     public string DisplayText => displayText;
@@ -33,7 +39,10 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     private float clipToPlayAnimationDelay= 0.0f;
     private Door currentDoorToAnimate;
     private bool isInteractible = true;
-   
+    private float light1StartingIntensity;
+    private float light2StartingIntensity;
+    private float light3StartingIntensity;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -77,8 +86,28 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         Keypad.InputEntered -= OnInputEntered;
     }
 
+    private void TurnOffLights()
+    {
+        light1StartingIntensity = light1.intensity;
+        light2StartingIntensity = light2.intensity;
+        light3StartingIntensity = light3.intensity;
+
+        light1.intensity = Mathf.Lerp(light1StartingIntensity, 0.0f, 2.0f);
+        light2.intensity = Mathf.Lerp(light2StartingIntensity, 0.0f, 2.0f);
+        light3.intensity = Mathf.Lerp(light3StartingIntensity, 0.0f, 2.0f);
+    }
+
+    private void TurnOnLights()
+    {
+        light1.intensity = Mathf.Lerp(0.0f, light1StartingIntensity, 4.0f);
+        light2.intensity = Mathf.Lerp(0.0f, light2StartingIntensity, 4.0f);
+        light3.intensity = Mathf.Lerp(0.0f, light3StartingIntensity, 4.0f);
+    }
+
     private void PlayClip()
     {
+        TurnOffLights();
+
         try
         {
             StartCoroutine(PlayAudio());
@@ -88,6 +117,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             throw new System.Exception("Missing AudioSource componant or audio clip. InteractiveObject requires an AudioSource componant and an audio clip.");
         }
         StartCoroutine(PlayAnimation());
+        ghostLightManager.SetActive(true);
     }
 
     IEnumerator PlayAnimation()
@@ -105,5 +135,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         audioSource.PlayOneShot(clipToPlay, 1.0f);
         yield return new WaitForSeconds(clipToPlay.length);
         isInteractible = true;
+        ghostLightManager.SetActive(false);
+        TurnOnLights();
     }
 }
