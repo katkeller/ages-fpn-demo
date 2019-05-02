@@ -9,7 +9,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     protected string displayText = nameof(InteractiveObject);
 
     [SerializeField]
-    private AudioClip buttonClip, clip1, clip2, clip3;
+    private AudioClip buttonClip, introClip, clip1, clip2, clip3;
 
     [SerializeField]
     private Door doorToAnimate1, doorToAnimate2, doorToAnimate3;
@@ -41,6 +41,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     public void InteractWith()
     {
         keypad.ShowMenu();
+        audioSource.PlayOneShot(introClip, 1.0f);
         Debug.Log($"Player just interacted with {gameObject.name}!");
     }
 
