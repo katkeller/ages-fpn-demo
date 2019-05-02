@@ -42,10 +42,15 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     private float light1StartingIntensity;
     private float light2StartingIntensity;
     private float light3StartingIntensity;
+    private float forwardSpeedStartingValue;
+    private float backwardSpeedStartingValue;
+    private float strafeSpeedStartingValue;
+    private RigidbodyFirstPersonController rigidbodyFirstPersonController;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        rigidbodyFirstPersonController = FindObjectOfType<RigidbodyFirstPersonController>();
     }
 
     public void InteractWith()
@@ -67,12 +72,14 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             currentDoorToAnimate = doorToAnimate1;
             clipToPlayAnimationDelay = clip1AnimationDelay;
             PlayClip();
+            StopPlayerMovement();
         }
         else if(keypad.Input == phoneNumber2)
         {
             clipToPlay = clip2;
             currentDoorToAnimate = doorToAnimate2;
             PlayClip();
+            StopPlayerMovement();
         }
     }
 
@@ -102,6 +109,24 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         light1.intensity = Mathf.Lerp(0.0f, light1StartingIntensity, 4.0f);
         light2.intensity = Mathf.Lerp(0.0f, light2StartingIntensity, 4.0f);
         light3.intensity = Mathf.Lerp(0.0f, light3StartingIntensity, 4.0f);
+    }
+
+    private void StopPlayerMovement()
+    {
+        forwardSpeedStartingValue = rigidbodyFirstPersonController.movementSettings.ForwardSpeed;
+        backwardSpeedStartingValue = rigidbodyFirstPersonController.movementSettings.BackwardSpeed;
+        strafeSpeedStartingValue = rigidbodyFirstPersonController.movementSettings.StrafeSpeed;
+
+        rigidbodyFirstPersonController.movementSettings.ForwardSpeed = 0;
+        rigidbodyFirstPersonController.movementSettings.BackwardSpeed = 0;
+        rigidbodyFirstPersonController.movementSettings.StrafeSpeed = 0;
+    }
+
+    private void ResumePlayerMovement()
+    {
+        rigidbodyFirstPersonController.movementSettings.ForwardSpeed = forwardSpeedStartingValue;
+        rigidbodyFirstPersonController.movementSettings.BackwardSpeed = backwardSpeedStartingValue;
+        rigidbodyFirstPersonController.movementSettings.StrafeSpeed = strafeSpeedStartingValue;
     }
 
     private void PlayClip()
@@ -137,5 +162,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         isInteractible = true;
         ghostLightManager.SetActive(false);
         TurnOnLights();
+        ResumePlayerMovement();
     }
 }
