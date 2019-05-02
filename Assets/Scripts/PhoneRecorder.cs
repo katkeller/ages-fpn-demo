@@ -66,6 +66,8 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
 
     private void OnInputEntered()
     {
+        audioSource.Stop();
+
         if (keypad.Input == phoneNumber1)
         {
             clipToPlay = clip1;
