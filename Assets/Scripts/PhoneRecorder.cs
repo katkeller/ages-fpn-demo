@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PhoneRecorder : MonoBehaviour, IInteractive
 {
@@ -31,8 +32,8 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     private AudioClip clipToPlay;
     private float clipToPlayAnimationDelay= 0.0f;
     private Door currentDoorToAnimate;
+    private bool isInteractible = true;
    
-
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -40,9 +41,13 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
 
     public void InteractWith()
     {
-        keypad.ShowMenu();
-        audioSource.PlayOneShot(introClip, 1.0f);
-        Debug.Log($"Player just interacted with {gameObject.name}!");
+        if (isInteractible)
+        {
+            keypad.ShowMenu();
+            audioSource.PlayOneShot(introClip, 1.0f);
+            isInteractible = false;
+            Debug.Log($"Player just interacted with {gameObject.name}!");
+        }
     }
 
     private void OnInputEntered()
@@ -52,15 +57,14 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             clipToPlay = clip1;
             currentDoorToAnimate = doorToAnimate1;
             clipToPlayAnimationDelay = clip1AnimationDelay;
-
+            PlayClip();
         }
         else if(keypad.Input == phoneNumber2)
         {
             clipToPlay = clip2;
             currentDoorToAnimate = doorToAnimate2;
+            PlayClip();
         }
-
-        PlayClip();
     }
 
     private void OnEnable()
@@ -99,5 +103,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         audioSource.PlayOneShot(buttonClip, 1.0f);
         yield return new WaitForSeconds(buttonClipLength);
         audioSource.PlayOneShot(clipToPlay, 1.0f);
+        yield return new WaitForSeconds(clipToPlay.length);
+        isInteractible = true;
     }
 }
