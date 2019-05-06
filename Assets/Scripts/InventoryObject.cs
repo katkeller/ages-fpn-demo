@@ -28,7 +28,7 @@ public class InventoryObject : InteractiveObject
     private new Renderer renderer;
     private new Collider collider;
 
-    private void Start()
+    protected virtual void Start()
     {
         renderer = GetComponent<Renderer>();
         collider = GetComponent<Collider>();
