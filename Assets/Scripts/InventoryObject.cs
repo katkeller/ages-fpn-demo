@@ -30,6 +30,7 @@ public class InventoryObject : InteractiveObject
     private new Collider collider;
 
     public static event Action FlashlightHasBeenPickedUp;
+    public static event Action FirstNoteHasBeenPickedUp;
 
     protected virtual void Start()
     {
@@ -49,10 +50,10 @@ public class InventoryObject : InteractiveObject
     /// </summary>
     public override void InteractWith()
     {
-        if(objectName == "Flashlight")
-        {
+        if (objectName == "Flashlight")
             FlashlightHasBeenPickedUp?.Invoke();
-        }
+        else if (objectName == "Ed's Note")
+            FirstNoteHasBeenPickedUp?.Invoke();
 
         base.InteractWith();
         PlayerInventory.InventoryObjects.Add(this);
