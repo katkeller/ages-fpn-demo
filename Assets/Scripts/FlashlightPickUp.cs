@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FlashlightPickUp : InventoryObject
+public class FlashlightPickUp : MonoBehaviour
 {
     [SerializeField]
     private Text tutorialText;
@@ -20,21 +20,29 @@ public class FlashlightPickUp : InventoryObject
     [SerializeField]
     private GameObject fPFlashlight;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         tutorialText.text = "";
         fPFlashlight.SetActive(false);
     }
 
-    public override void InteractWith()
+    private void OnFlashlightHasBeenPickedUp()
     {
-        base.InteractWith();
         fPFlashlight.SetActive(true);
         spotLight.intensity = 0.0f;
         pointLight.intensity = 0.0f;
         tutorialText.text = tutorialTextContent;
         StartCoroutine(WaitForTutorialText());
+    }
+
+    private void OnEnable()
+    {
+        InventoryObject.FlashlightHasBeenPickedUp += OnFlashlightHasBeenPickedUp;
+    }
+
+    private void OnDisable()
+    {
+        InventoryObject.FlashlightHasBeenPickedUp -= OnFlashlightHasBeenPickedUp;
     }
 
     IEnumerator WaitForTutorialText()
