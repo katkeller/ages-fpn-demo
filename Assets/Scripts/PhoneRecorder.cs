@@ -85,14 +85,22 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         }
     }
 
+    private void OnKeypadClosed()
+    {
+        isInteractible = true;
+        audioSource.Stop();
+    }
+
     private void OnEnable()
     {
         Keypad.InputEntered += OnInputEntered;
+        Keypad.KeypadClosed += OnKeypadClosed;
     }
 
     private void OnDisable()
     {
         Keypad.InputEntered -= OnInputEntered;
+        Keypad.KeypadClosed -= OnKeypadClosed;
     }
 
     private void TurnOffLights()
