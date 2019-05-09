@@ -74,14 +74,19 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             currentDoorToAnimate = doorToAnimate1;
             clipToPlayAnimationDelay = clip1AnimationDelay;
             PlayClip();
-            StopPlayerMovement();
+            //StopPlayerMovement();
         }
         else if(keypad.Input == phoneNumber2)
         {
             clipToPlay = clip2;
             currentDoorToAnimate = doorToAnimate2;
+            clipToPlayAnimationDelay = clip2AnimationDelay;
             PlayClip();
-            StopPlayerMovement();
+            //StopPlayerMovement();
+        }
+        else
+        {
+            isInteractible = true;
         }
     }
 
@@ -172,6 +177,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         isInteractible = true;
         ghostLightManager.SetActive(false);
         TurnOnLights();
-        ResumePlayerMovement();
+        //ResumePlayerMovement();
     }
 }

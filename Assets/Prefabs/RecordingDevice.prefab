@@ -3268,7 +3268,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826258297771071379}
-  m_LocalRotation: {x: -0, y: 0.38958552, z: -0, w: -0.92099035}
+  m_LocalRotation: {x: 0, y: 0.38958225, z: -0, w: -0.9209917}
   m_LocalPosition: {x: 13.1875, y: 0.7265625, z: 1.1875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4384,15 +4384,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayText: Phonecall Recorder
   buttonClip: {fileID: 8300000, guid: 329af5f4a29b1ab49959253a929ef50f, type: 3}
-  introClip: {fileID: 8300000, guid: 62c8e9b5ac492c24fa802cab262962b2, type: 3}
-  clip1: {fileID: 8300000, guid: 6ecb5c195ef1b2b45990dd063b4c3fbe, type: 3}
-  clip2: {fileID: 0}
+  introClip: {fileID: 8300000, guid: cda0da2db718b60468118b0c49b84934, type: 3}
+  clip1: {fileID: 8300000, guid: 7a207f54019261a429c6f9318cc81041, type: 3}
+  clip2: {fileID: 8300000, guid: 1c40e651f4d29ad48a549c3565987ede, type: 3}
   clip3: {fileID: 0}
   doorToAnimate1: {fileID: 0}
   doorToAnimate2: {fileID: 0}
   doorToAnimate3: {fileID: 0}
   clip1AnimationDelay: 45
-  clip2AnimationDelay: 2
+  clip2AnimationDelay: 15
   clip2SecondAnimationDelay: 0
   keypad: {fileID: 0}
   phoneNumber1: 1
