@@ -17,26 +17,6 @@ public class AudioVisualizer : MonoBehaviour
     [SerializeField]
     private Light lightSource;
 
-    //[SerializeField]
-    //private Keypad keypad;
-
-    //[SerializeField]
-    //private string phoneNumber1, phoneNumber2;
-
-    //private Light lightToUse;
-
-    //private void OnInputEntered()
-    //{
-    //    if (keypad.Input == phoneNumber1)
-    //    {
-    //        lightToUse = lightSource1;
-    //    }
-    //    else if (keypad.Input == phoneNumber2)
-    //    {
-    //        lightToUse = lightSource2;
-    //    }
-    //}
-
     private void Update()
     {
         UpdateLightIntensity();
