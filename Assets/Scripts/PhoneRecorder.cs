@@ -75,7 +75,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             clipToPlayAnimationDelay = clip1AnimationDelay;
             ghostLight1.gameObject.SetActive(true);
             PlayClip();
-            //StopPlayerMovement();
         }
         else if(keypad.Input == phoneNumber2)
         {
@@ -84,7 +83,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             clipToPlayAnimationDelay = clip2AnimationDelay;
             ghostLight2.gameObject.SetActive(true);
             PlayClip();
-            //StopPlayerMovement();
         }
         else
         {
@@ -128,24 +126,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         light3.intensity = Mathf.Lerp(0.0f, light3StartingIntensity, 4.0f);
     }
 
-    private void StopPlayerMovement()
-    {
-        forwardSpeedStartingValue = rigidbodyFirstPersonController.movementSettings.ForwardSpeed;
-        backwardSpeedStartingValue = rigidbodyFirstPersonController.movementSettings.BackwardSpeed;
-        strafeSpeedStartingValue = rigidbodyFirstPersonController.movementSettings.StrafeSpeed;
-
-        rigidbodyFirstPersonController.movementSettings.ForwardSpeed = 0;
-        rigidbodyFirstPersonController.movementSettings.BackwardSpeed = 0;
-        rigidbodyFirstPersonController.movementSettings.StrafeSpeed = 0;
-    }
-
-    private void ResumePlayerMovement()
-    {
-        rigidbodyFirstPersonController.movementSettings.ForwardSpeed = forwardSpeedStartingValue;
-        rigidbodyFirstPersonController.movementSettings.BackwardSpeed = backwardSpeedStartingValue;
-        rigidbodyFirstPersonController.movementSettings.StrafeSpeed = strafeSpeedStartingValue;
-    }
-
     private void PlayClip()
     {
         TurnOffLights();
@@ -183,6 +163,5 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             ghostLight2.gameObject.SetActive(false);
 
         TurnOnLights();
-        //ResumePlayerMovement();
     }
 }
