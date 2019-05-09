@@ -25,7 +25,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
     private string phoneNumber1, phoneNumber2, phoneNumber3;
 
     [SerializeField]
-    private GameObject ghostLightManager;
+    private GameObject ghostLight1, ghostLight2;
 
     [SerializeField]
     private Light light1, light2, light3, light4;
@@ -73,6 +73,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             clipToPlay = clip1;
             currentDoorToAnimate = doorToAnimate1;
             clipToPlayAnimationDelay = clip1AnimationDelay;
+            ghostLight1.gameObject.SetActive(true);
             PlayClip();
             //StopPlayerMovement();
         }
@@ -81,6 +82,7 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             clipToPlay = clip2;
             currentDoorToAnimate = doorToAnimate2;
             clipToPlayAnimationDelay = clip2AnimationDelay;
+            ghostLight2.gameObject.SetActive(true);
             PlayClip();
             //StopPlayerMovement();
         }
@@ -157,7 +159,6 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
             throw new System.Exception("Missing AudioSource componant or audio clip. InteractiveObject requires an AudioSource componant and an audio clip.");
         }
         StartCoroutine(PlayAnimation());
-        ghostLightManager.SetActive(true);
     }
 
     IEnumerator PlayAnimation()
@@ -175,7 +176,12 @@ public class PhoneRecorder : MonoBehaviour, IInteractive
         audioSource.PlayOneShot(clipToPlay, 1.0f);
         yield return new WaitForSeconds(clipToPlay.length);
         isInteractible = true;
-        ghostLightManager.SetActive(false);
+
+        if (ghostLight1.gameObject.activeInHierarchy == true)
+            ghostLight1.gameObject.SetActive(false);
+        else if (ghostLight2.gameObject.activeInHierarchy == true)
+            ghostLight2.gameObject.SetActive(false);
+
         TurnOnLights();
         //ResumePlayerMovement();
     }

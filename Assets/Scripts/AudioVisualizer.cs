@@ -17,32 +17,30 @@ public class AudioVisualizer : MonoBehaviour
     [SerializeField]
     private Light lightSource;
 
-    //private Material material;
+    //[SerializeField]
+    //private Keypad keypad;
 
-    private void Start()
-    {
-        //material = GetComponent<MeshRenderer>().materials[0];
-    }
+    //[SerializeField]
+    //private string phoneNumber1, phoneNumber2;
+
+    //private Light lightToUse;
+
+    //private void OnInputEntered()
+    //{
+    //    if (keypad.Input == phoneNumber1)
+    //    {
+    //        lightToUse = lightSource1;
+    //    }
+    //    else if (keypad.Input == phoneNumber2)
+    //    {
+    //        lightToUse = lightSource2;
+    //    }
+    //}
 
     private void Update()
     {
         UpdateLightIntensity();
-        //UpdateMaterial();
     }
-
-    //private void UpdateMaterial()
-    //{
-    //    if (useBuffer)
-    //    {
-    //        Color color = new Color(AudioSampleCollector.audioBandBuffer[frequencyBandToSample], AudioSampleCollector.audioBandBuffer[frequencyBandToSample], AudioSampleCollector.audioBandBuffer[frequencyBandToSample]);
-    //        material.SetColor("_EmissionColor", color);
-    //    }
-    //    else if (!useBuffer)
-    //    {
-    //        Color color = new Color(AudioSampleCollector.audioBand[frequencyBandToSample], AudioSampleCollector.audioBand[frequencyBandToSample], AudioSampleCollector.audioBand[frequencyBandToSample]);
-    //        material.SetColor("_EmissionColor", color);
-    //    }
-    //}
 
     private void UpdateLightIntensity()
     {
