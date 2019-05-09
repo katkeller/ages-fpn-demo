@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InventoryObject : InteractiveObject
 {
@@ -28,7 +29,10 @@ public class InventoryObject : InteractiveObject
     private new Renderer renderer;
     private new Collider collider;
 
-    private void Start()
+    public static event Action FlashlightHasBeenPickedUp;
+    public static event Action FirstNoteHasBeenPickedUp;
+
+    protected virtual void Start()
     {
         renderer = GetComponent<Renderer>();
         collider = GetComponent<Collider>();
@@ -46,6 +50,11 @@ public class InventoryObject : InteractiveObject
     /// </summary>
     public override void InteractWith()
     {
+        if (objectName == "Flashlight")
+            FlashlightHasBeenPickedUp?.Invoke();
+        else if (objectName == "Ed's Note")
+            FirstNoteHasBeenPickedUp?.Invoke();
+
         base.InteractWith();
         PlayerInventory.InventoryObjects.Add(this);
         InventoryMenu.Instance.AddItemToMenu(this);

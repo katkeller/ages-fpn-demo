@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleMenu.unity
     guid: 02f1215d29d3bc341a8e74d7be572106
   - enabled: 1
-    path: Assets/Scenes/RaycastingTutorial.unity
-    guid: 86891de9a3ffd754bab84288b1388300
-  - enabled: 1
-    path: Assets/Scenes/GreyBoxing2.unity
-    guid: bcf464ff12d926b47bb80a7191517b7a
+    path: Assets/Scenes/GamePlayScene1.unity
+    guid: 3ef34a768f2334544afa17c4dded1e49
   m_configObjects: {}

@@ -25,6 +25,7 @@ public class Keypad : MonoBehaviour
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
 
     public static event Action InputEntered;
+    public static event Action KeypadClosed;
 
     private bool IsVisible => canvasGroup.alpha > 0;
 
@@ -75,7 +76,10 @@ public class Keypad : MonoBehaviour
     public void ClearInput()
     {
         if (currentInput == "")
+        {
             HideMenu();
+            KeypadClosed?.Invoke();
+        }
         else
         {
             currentInput = "";
@@ -88,6 +92,7 @@ public class Keypad : MonoBehaviour
     {
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
         rigidbodyFirstPersonController.enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -98,6 +103,7 @@ public class Keypad : MonoBehaviour
     {
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         rigidbodyFirstPersonController.enabled = true;

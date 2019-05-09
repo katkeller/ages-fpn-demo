@@ -18,4 +18,9 @@ public class TitleMenu : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+
+    public void OpenCreditsURL()
+    {
+        Application.OpenURL("https://katkeller.io/behind-closed-doors-game-and-narrative-design");
+    } 
 }
